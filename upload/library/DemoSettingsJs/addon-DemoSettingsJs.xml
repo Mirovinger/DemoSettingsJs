@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="DemoSettingsJs" title="[DEMO] Get settings in js" version_string="1.0.0" version_id="1" url="" install_callback_class="DemoSettingsJs_Installer" install_callback_method="install" uninstall_callback_class="DemoSettingsJs_Installer" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="template_create" execute_order="10" callback_class="DemoSettingsJs_Listener" callback_method="templateCreate" active="1" hint="PAGE_CONTAINER" description="Add variables to template &quot;demo_settings_js&quot;"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="demosettingsjs" display_order="2147483647" debug_only="0"/>
+    <option option_id="demosjs_custom_text" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>size=12</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="demosettingsjs" display_order="30"/>
+    </option>
+    <option option_id="demosjs_enable" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="demosettingsjs" display_order="1"/>
+    </option>
+    <option option_id="demosjs_multiple" edit_format="checkbox" data_type="array" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>red=Red color
+green=Green color
+blue=Blue color</edit_format_params>
+      <sub_options>red
+green
+blue</sub_options>
+      <relation group_id="demosettingsjs" display_order="20"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_demosjs_custom_text" version_id="1" version_string="1.0.0"><![CDATA[Custom text]]></phrase>
+    <phrase title="option_demosjs_custom_text_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_demosjs_enable" version_id="1" version_string="1.0.0"><![CDATA[Enable]]></phrase>
+    <phrase title="option_demosjs_enable_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_demosjs_multiple" version_id="1" version_string="1.0.0"><![CDATA[Multiple options]]></phrase>
+    <phrase title="option_demosjs_multiple_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_group_demosettingsjs" version_id="1" version_string="1.0.0"><![CDATA[[Demo] Get settings in js]]></phrase>
+    <phrase title="option_group_demosettingsjs_description" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="demo_settings_js" version_id="1" version_string="1.0.0"><![CDATA[<xen:require css="demo_settings_js.css" />
+<xen:require js="js/demosettingsjs/demo.js" />
+
+<div class="demoSettingsJs" 
+	 data-enable="{$xenOptions.demosjs_enable}"
+	 data-text="{$xenOptions.demosjs_custom_text}"
+	 data-colors="{xen:escape {xen:helper json, {$xenOptions.demosjs_multiple}}}"
+	 data-settings="{xen:escape {xen:helper json, {$demosettingsjs_data}}}">
+	<p>Demo settings js</p>
+</div>]]></template>
+    <template title="demo_settings_js.css" version_id="1" version_string="1.0.0"><![CDATA[.demoSettingsJs {
+		
+}
+
+.demoSettingsJs .square{
+		display: inline-block;
+		height:40px;
+		width: 40px;
+		margin: 5px;
+}
+
+.demoSettingsJs .square.black{
+		background-color: black;
+}
+
+.demoSettingsJs .square.red{
+		background-color: red;
+}
+
+.demoSettingsJs .square.green{
+		background-color: green;
+}
+
+.demoSettingsJs .square.blue{
+		background-color: blue;
+}]]></template>
+  </templates>
+  <public_template_modifications>
+    <modification template="PAGE_CONTAINER" modification_key="demosettingjs" description="Add a container above the header" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<!-- main content area -->]]></find>
+      <replace><![CDATA[$0
+<xen:include template="demo_settings_js" />]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
