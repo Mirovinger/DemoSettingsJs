@@ -31,9 +31,9 @@ if(typeof MyDemoObj === 'undefined') var MyDemoObj = {};
 			
 			//Extra text management
 			$text = $container.children('p').first();
-			
+
 			if(!extraText){
-				$extraText = settings.boardTitle;
+				extraText = settings.boardTitle;
 			}
 			
 			$text.text($text.text() + ': ' + extraText);

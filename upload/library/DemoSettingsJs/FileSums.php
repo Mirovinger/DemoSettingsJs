@@ -6,7 +6,7 @@ class DemoSettingsJs_FileSums
 	{
 		return array (
   'library/DemoSettingsJs/Listener.php' => '71439a5046ba8f55c0b32f1f5b3aee54',
-  'js/demosettingsjs/demo.js' => '7471dc24794944348d1cf836e2124e8f',
+  'js/demosettingsjs/demo.js' => 'e97d40350a3e4c3cc3543963daacba2f',
 );
 	}
 }
